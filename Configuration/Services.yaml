@@ -1,0 +1,16 @@
+services:
+  # general settings
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  SvenJuergens\DisableBeuserCsv\:
+    resource: '../Classes/*'
+
+  SvenJuergens\DisableBeuserCsv\EventListener\MailsAreSentEventListener:
+    tags:
+      - name: event.listener
+        method: before
+        identifier: 'BeforeMailsAreSentEventListener'
+        event: SvenJuergens\DisableBeuser\Event\BeforeMailsAreSentEvent

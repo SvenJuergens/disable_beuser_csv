@@ -1,0 +1,27 @@
+{
+	"name": "svenjuergens/disable-beuser-csv",
+	"description": "EventListener for disable_beuser to add user as Csv to Email",
+	"homepage": "https://github.com/SvenJuergens/disable_beuser_csv",
+	"authors": [
+		{
+			"name": "Sven Juergens",
+			"email": "sj@nordsonne.de"
+		}
+	],
+	"license": "GPL-2.0-or-later",
+	"type": "typo3-cms-extension",
+	"require": {
+		"typo3/cms-core": "^11.5",
+		"league/csv": "^9.8"
+	},
+	"autoload": {
+		"psr-4": {
+			"SvenJuergens\\DisableBeuserCsv\\": "Classes/"
+		}
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "disable_beuser_csv"
+		}
+	}
+}
