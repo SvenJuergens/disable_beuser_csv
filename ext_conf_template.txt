@@ -1,0 +1,5 @@
+# cat=basic; type=string; label=LLL:EXT:disable_beuser_csv/Resources/Private/Language/locallang.xlf:csvDelimiter
+delimiter = ,
+
+# cat=basic; type=string; label=LLL:EXT:disable_beuser_csv/Resources/Private/Language/locallang.xlf:csvQuote
+quote = "

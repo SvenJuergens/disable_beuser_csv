@@ -3,17 +3,13 @@ declare(strict_types=1);
 
 namespace SvenJuergens\DisableBeuserCsv\EventListener;
 
-use League\Csv\CannotInsertRecord;
-use League\Csv\Exception;
 use SvenJuergens\DisableBeuser\Event\BeforeMailsAreSentEvent;
-use League\Csv\Writer;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use TYPO3\CMS\Core\Utility\CsvUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class MailsAreSentEventListener
 {
-    /**
-     * @throws CannotInsertRecord
-     * @throws Exception
-     */
     public function before(BeforeMailsAreSentEvent $event): void
     {
         $disabledUser = $event->getDisabledUser();
@@ -23,13 +19,22 @@ class MailsAreSentEventListener
             unset($user['lastlogin'], $user['crdate']);
         }
         unset($user);
-        $header = array_keys($disabledUser[0]);
-        $csv = Writer::createFromString();
-        $csv->insertOne($header);
-        $csv->insertAll($disabledUser);
+        $headerRow = array_keys($disabledUser[0]);
+
+        $extensionConfig = GeneralUtility::makeInstance(ExtensionConfiguration::class)
+            ->get('disable_beuser_csv');
+
+        $csvDelimiter = $extensionConfig['delimiter'] ?? ',';
+        $csvQuote = $extensionConfig['quote'] ?? '"';
+
+        // Create result
+        $result[] = CsvUtility::csvValues($headerRow, $csvDelimiter, $csvQuote);
+        foreach ($disabledUser as $record) {
+            $result[] = CsvUtility::csvValues($record, $csvDelimiter, $csvQuote);
+        }
 
         $event->getMailer()->attach(
-            $csv->toString(),
+            implode(CRLF, $result),
             'disable_beuser.csv',
             'text/csv'
         );

@@ -11,8 +11,7 @@
 	"license": "GPL-2.0-or-later",
 	"type": "typo3-cms-extension",
 	"require": {
-		"typo3/cms-core": "^11.5",
-		"league/csv": "^9.8",
+		"typo3/cms-core": "^11.5 || ^12.4",
 		"svenjuergens/disable_beuser": "^4.1"
 	},
 	"autoload": {

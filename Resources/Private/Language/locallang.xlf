@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2023-09-24T21:55:46Z" product-name="">
+        <header/>
+        <body>
+            <trans-unit id="csvDelimiter" xml:space="preserve">
+				<source>Csv Delimiter</source>
+			</trans-unit>
+            <trans-unit id="csvQuote" xml:space="preserve">
+				<source>CSV Quote</source>
+			</trans-unit>
+        </body>
+    </file>
+</xliff>
